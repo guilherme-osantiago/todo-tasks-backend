@@ -1,0 +1,35 @@
+POST http://localhost:3333/tasks
+Content-Type: application/json
+
+# Body
+{
+    "title": "Task 1",
+    "description": "Essa é a task 01",
+    "check": true
+}
+
+###
+
+
+GET http://localhost:3333/tasks
+
+
+###
+
+GET http://localhost:3333/tasks?search=edtiada
+
+###
+
+PUT http://localhost:3333/tasks/342d54c7-6ed9-469f-b221-7e8aa26b9b64
+Content-Type: application/json
+
+# Body
+{
+    "title": "Task edtiada",
+    "description": "Essa é uma task que foi editada",
+    "check": false
+}
+
+###
+
+DELETE  http://localhost:3333/tasks/5af8df86-48dc-47e8-b016-38e4f91b70f9
