@@ -56,5 +56,6 @@ server.delete('/tasks/:id', (request, reply) => {
 })
 
 server.listen({
-    port: 3333
+    port: 3333,
+    host: '0.0.0.0'
 })
