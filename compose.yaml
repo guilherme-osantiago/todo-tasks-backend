@@ -8,6 +8,8 @@ services:
       - 3333:3333
     volumes:
       - node_modules:/usr/src/app/node_modules
+    depends_on:
+      - postgres
     develop:
       watch:
         - action: sync
@@ -18,5 +20,18 @@ services:
         - action: rebuild
           path: package.json
 
+  postgres:
+    image: postgres:14.12-bullseye
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - mydatabase_data:/var/lib/postgresql/data
+
 volumes:
   node_modules: {}
+  mydatabase_data: {}

@@ -1,21 +1,21 @@
 import { fastify } from "fastify";
-import { DatabaseMemory } from "./database-memory.js";
+import { DatabasePostgres } from "./database-postgres.js";
 
 const server = fastify()
-const database = new DatabaseMemory()
+const database = new DatabasePostgres()
 
 server.get('/', () => {
     return 'Hello, world'
 })
 
 // Criar
-server.post('/tasks', (request, reply) => {
-    const { title, description, check } = request.body
+server.post('/tasks', async (request, reply) => {
+    const { title, description, is_checked } = request.body
 
-    database.create({
+    await database.create({
         title,
         description,
-        check,
+        is_checked,
     })
 
     // Status 201
@@ -24,22 +24,22 @@ server.post('/tasks', (request, reply) => {
 })
 
 // Ler
-server.get('/tasks', (request, reply) => {
+server.get('/tasks', async (request, reply) => {
     const search = request.query.search
 
-    const tasks = database.list(search)
+    const tasks = await database.list(search)
     return tasks
 })
 
 // Update
-server.put('/tasks/:id', (request, reply) => {
+server.put('/tasks/:id', async (request, reply) => {
     const taskId = request.params.id
-    const { title, description, check } = request.body
+    const { title, description, is_checked } = request.body
 
-    database.update(taskId, {
+    await database.update(taskId, {
         title,
         description,
-        check,
+        is_checked,
     })
 
     // Status 204
@@ -48,9 +48,9 @@ server.put('/tasks/:id', (request, reply) => {
 })
 
 // Delete
-server.delete('/tasks/:id', (request, reply) => {
+server.delete('/tasks/:id', async (request, reply) => {
     const taskId = request.params.id
-    database.delete(taskId)
+    await database.delete(taskId)
 
     return reply.status(204).send()
 })

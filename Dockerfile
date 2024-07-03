@@ -29,5 +29,6 @@ COPY . .
 EXPOSE 3333
 
 # Run the application.
+# PROD e DEV
 # CMD npm start
 CMD npm run dev

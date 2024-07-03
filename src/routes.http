@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "title": "Task 1",
     "description": "Essa é a task 01",
-    "check": true
+    "is_checked": false
 }
 
 ###
@@ -20,16 +20,16 @@ GET http://localhost:3333/tasks?search=edtiada
 
 ###
 
-PUT http://localhost:3333/tasks/342d54c7-6ed9-469f-b221-7e8aa26b9b64
+PUT http://localhost:3333/tasks/7dc6e124-6627-4fc9-bc8d-dca22fe7bdf4
 Content-Type: application/json
 
 # Body
 {
     "title": "Task edtiada",
     "description": "Essa é uma task que foi editada",
-    "check": false
+    "is_checked": false
 }
 
 ###
 
-DELETE  http://localhost:3333/tasks/5af8df86-48dc-47e8-b016-38e4f91b70f9
+DELETE  http://localhost:3333/tasks/888587bf-a600-490b-9677-2bda3e6cb26e
